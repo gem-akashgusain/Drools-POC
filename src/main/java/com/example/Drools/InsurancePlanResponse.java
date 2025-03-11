@@ -5,7 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OrderDiscount {
-
-    private Integer discount =0;
+public class InsurancePlanResponse {
+    private String response = "Medical Required";
 }

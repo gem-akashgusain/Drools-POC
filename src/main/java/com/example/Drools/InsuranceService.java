@@ -6,18 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderDiscountService {
+public class InsuranceService {
 
     @Autowired
     private KieContainer kieContainer;
 
-    public OrderDiscount getDiscount(OrderRequest orderRequest) {
-        OrderDiscount orderDiscount = new OrderDiscount();
+    public InsurancePlanResponse getInsurancePlan(InsuranceRequest request) {
+        InsurancePlanResponse response = new InsurancePlanResponse();
+
+
         KieSession kieSession = kieContainer.newKieSession();
-        kieSession.setGlobal("orderDiscount", orderDiscount);
-        kieSession.insert(orderRequest);
+        kieSession.setGlobal("insurancePlanResponse", response);
+        kieSession.insert(request);
         kieSession.fireAllRules();
-        kieSession.dispose();
-        return orderDiscount;
+
+        return response;
     }
 }
